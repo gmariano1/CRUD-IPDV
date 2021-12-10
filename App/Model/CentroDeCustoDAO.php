@@ -1,14 +1,13 @@
 <?php
 namespace App\Model;
 
-class CargoDAO
+class CentroDeCustoDAO
 {
-    public function create(Cargo $c)
+    public function create(CentroDeCusto $c)
     {
-        $sql = "INSERT INTO cargo (nome, descricao) VALUES (?, ?)";
+        $sql = "INSERT INTO centro_de_custo (nome) VALUES (?)";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->bindValue(1, $c->getNome());
-        $stmt->bindValue(2, $c->getDescricao());
         $return = $stmt->execute();
         if($return){
             return "Inserido com sucesso";
@@ -19,7 +18,7 @@ class CargoDAO
 
     public function read()
     {
-        $sql = "SELECT * FROM cargo";
+        $sql = "SELECT * FROM centro_de_custo";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->execute();
         if($stmt->rowCount() > 0){
@@ -31,12 +30,12 @@ class CargoDAO
 
     }
 
-    public function update(Cargo $c)
+    public function update(CentroDeCusto $c)
     {
 
         if(!is_null($c->getNome()))
         {
-            $sql = "UPDATE cargo SET nome = ? WHERE id = ?";
+            $sql = "UPDATE centro_de_custo SET nome = ? WHERE id = ?";
             $stmt = Conexao::getConnection()->prepare($sql);
             $stmt->bindValue(1, $c->getNome());
             $stmt->bindValue(2, $c->getId());
@@ -45,26 +44,13 @@ class CargoDAO
                 return "Erro ao atualizar";
             }
         }
-
-        if(!is_null($c->getDescricao()))
-        {
-            $sql = "UPDATE cargo SET descricao = ? WHERE id = ?";
-            $stmt = Conexao::getConnection()->prepare($sql);
-            $stmt->bindValue(1, $c->getDescricao());
-            $stmt->bindValue(2, $c->getId());
-            $stmt->execute();
-            if(!$return){
-                return "Erro ao atualizar";
-            }
-            
-        }
         return "Atualizado com sucesso";
         
     }
 
     public function delete($id)
     {
-        $sql = "DELETE FROM cargo WHERE id = ?";
+        $sql = "DELETE FROM centro_de_custo WHERE id = ?";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
         $return = $stmt->execute();

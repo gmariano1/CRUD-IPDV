@@ -1,14 +1,14 @@
 <?php
 namespace App\Model;
 
-class CargoDAO
+class DepartamentoDAO
 {
-    public function create(Cargo $c)
+    public function create(Departamento $c)
     {
-        $sql = "INSERT INTO cargo (nome, descricao) VALUES (?, ?)";
+        $sql = "INSERT INTO departamento (nome, centro_de_custo_id) VALUES (?, ?)";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->bindValue(1, $c->getNome());
-        $stmt->bindValue(2, $c->getDescricao());
+        $stmt->bindValue(2, $c->getCentroDeCustoId());
         $return = $stmt->execute();
         if($return){
             return "Inserido com sucesso";
@@ -19,7 +19,7 @@ class CargoDAO
 
     public function read()
     {
-        $sql = "SELECT * FROM cargo";
+        $sql = "SELECT * FROM departamento";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->execute();
         if($stmt->rowCount() > 0){
@@ -31,12 +31,12 @@ class CargoDAO
 
     }
 
-    public function update(Cargo $c)
+    public function update(Departamento $c)
     {
 
         if(!is_null($c->getNome()))
         {
-            $sql = "UPDATE cargo SET nome = ? WHERE id = ?";
+            $sql = "UPDATE departamento SET nome = ? WHERE id = ?";
             $stmt = Conexao::getConnection()->prepare($sql);
             $stmt->bindValue(1, $c->getNome());
             $stmt->bindValue(2, $c->getId());
@@ -46,11 +46,11 @@ class CargoDAO
             }
         }
 
-        if(!is_null($c->getDescricao()))
+        if(!is_null($c->getCentroDeCustoId()))
         {
-            $sql = "UPDATE cargo SET descricao = ? WHERE id = ?";
+            $sql = "UPDATE departamento SET centro_de_custo_id = ? WHERE id = ?";
             $stmt = Conexao::getConnection()->prepare($sql);
-            $stmt->bindValue(1, $c->getDescricao());
+            $stmt->bindValue(1, $c->getCentroDeCustoId());
             $stmt->bindValue(2, $c->getId());
             $stmt->execute();
             if(!$return){
@@ -64,7 +64,7 @@ class CargoDAO
 
     public function delete($id)
     {
-        $sql = "DELETE FROM cargo WHERE id = ?";
+        $sql = "DELETE FROM departamento WHERE id = ?";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
         $return = $stmt->execute();
