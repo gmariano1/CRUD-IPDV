@@ -1,0 +1,17 @@
+nav{
+    background-color: rgb(112, 14, 204);
+}
+body{
+    background-color: rgb(112, 14, 204);
+}
+.container {
+    background-color: rgb(99, 97, 128);
+    padding-bottom: 20px;
+    margin-top: 20px;
+    position: center;
+    color: white;
+}
+.btn.btn-primary{
+    background-color: rgb(112, 14, 204);
+    border-color: rgb(112, 14, 204);
+}

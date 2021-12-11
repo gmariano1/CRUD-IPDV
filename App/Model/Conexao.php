@@ -7,8 +7,7 @@ class Conexao
 
     private static function env()
     {
-        require_once './constants.php';
-        $dotenv = Dotenv\Dotenv::createImmutable(ABSPATH);
+        $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
         $dotenv->safeLoad();
     }
 

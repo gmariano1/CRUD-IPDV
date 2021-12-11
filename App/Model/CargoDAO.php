@@ -11,9 +11,9 @@ class CargoDAO
         $stmt->bindValue(2, $c->getDescricao());
         $return = $stmt->execute();
         if($return){
-            return "Inserido com sucesso";
+            return true;
         }else{
-            return "Erro de execução";
+            return false;
         }
     }
 
@@ -42,7 +42,7 @@ class CargoDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
         }
 
@@ -54,11 +54,11 @@ class CargoDAO
             $stmt->bindValue(2, $c->getId());
             $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
             
         }
-        return "Atualizado com sucesso";
+        return true;
         
     }
 
@@ -69,9 +69,9 @@ class CargoDAO
         $stmt->bindValue(1, $id);
         $return = $stmt->execute();
         if($return){
-            return "Deletado com sucesso";
+            return true;
         }else{
-            return "Erro ao deletar";
+            return false;
         }
     }
 }

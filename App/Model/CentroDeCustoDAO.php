@@ -10,9 +10,9 @@ class CentroDeCustoDAO
         $stmt->bindValue(1, $c->getNome());
         $return = $stmt->execute();
         if($return){
-            return "Inserido com sucesso";
+            return true;
         }else{
-            return "Erro de execução";
+            return false;
         }
     }
 
@@ -41,10 +41,10 @@ class CentroDeCustoDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
         }
-        return "Atualizado com sucesso";
+        return true;
         
     }
 
@@ -55,9 +55,9 @@ class CentroDeCustoDAO
         $stmt->bindValue(1, $id);
         $return = $stmt->execute();
         if($return){
-            return "Deletado com sucesso";
+            return true;
         }else{
-            return "Erro ao deletar";
+            return false;
         }
     }
 }

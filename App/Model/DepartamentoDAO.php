@@ -11,9 +11,9 @@ class DepartamentoDAO
         $stmt->bindValue(2, $c->getCentroDeCustoId());
         $return = $stmt->execute();
         if($return){
-            return "Inserido com sucesso";
+            return true;
         }else{
-            return "Erro de execução";
+            return false;
         }
     }
 
