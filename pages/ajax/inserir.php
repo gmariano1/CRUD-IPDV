@@ -69,10 +69,10 @@ if($_POST['type'] == 'usuario')
     $uao = new UsuarioDAO();
     $result = $uao->create($u);
     if($result){
-        echo json_encode(['error' => false, 'msg' => "Departamento criado!!"]);
+        echo json_encode(['error' => false, 'msg' => "Usuario criado!!"]);
         return;
     }else{
-        echo json_encode(['error' => true, 'msg' => "Erro ao criar departamento, problema de conexão"]);
+        echo json_encode(['error' => true, 'msg' => "Erro ao criar usuario, problema de conexão"]);
         return;
     }
 }

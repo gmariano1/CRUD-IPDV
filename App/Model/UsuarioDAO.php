@@ -14,11 +14,7 @@ class UsuarioDAO
         $stmt->bindValue(5, $c->getCargoId());
         $stmt->bindValue(6, $c->getDepartamentoId());
         $return = $stmt->execute();
-        if($return){
-            return "Inserido com sucesso";
-        }else{
-            return "Erro de execução";
-        }
+        return $return;
     }
 
     public function read()
@@ -56,7 +52,7 @@ class UsuarioDAO
             $stmt = Conexao::getConnection()->prepare($sql);
             $stmt->bindValue(1, $c->getEmail());
             $stmt->bindValue(2, $c->getId());
-            $stmt->execute();
+            $return = $stmt->execute();
             if(!$return){
                 return "Erro ao atualizar";
             }
@@ -69,7 +65,7 @@ class UsuarioDAO
             $stmt = Conexao::getConnection()->prepare($sql);
             $stmt->bindValue(1, $c->getDataDeNascimento());
             $stmt->bindValue(2, $c->getId());
-            $stmt->execute();
+            $return = $stmt->execute();
             if(!$return){
                 return "Erro ao atualizar";
             }
@@ -82,7 +78,7 @@ class UsuarioDAO
             $stmt = Conexao::getConnection()->prepare($sql);
             $stmt->bindValue(1, $c->getCPF());
             $stmt->bindValue(2, $c->getId());
-            $stmt->execute();
+            $return = $stmt->execute();
             if(!$return){
                 return "Erro ao atualizar";
             }
@@ -95,7 +91,7 @@ class UsuarioDAO
             $stmt = Conexao::getConnection()->prepare($sql);
             $stmt->bindValue(1, $c->getCargoId());
             $stmt->bindValue(2, $c->getId());
-            $stmt->execute();
+            $return = $stmt->execute();
             if(!$return){
                 return "Erro ao atualizar";
             }
@@ -108,13 +104,13 @@ class UsuarioDAO
             $stmt = Conexao::getConnection()->prepare($sql);
             $stmt->bindValue(1, $c->getDepartamentoId());
             $stmt->bindValue(2, $c->getId());
-            $stmt->execute();
+            $return = $stmt->execute();
             if(!$return){
                 return "Erro ao atualizar";
             }
             
         }
-        return "Atualizado com sucesso";
+        return true;
         
     }
 

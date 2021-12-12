@@ -45,7 +45,7 @@
         }
 
         function clearThis(target) {
-            target.value= "";
+            target.val() = "";
         }
     </script>
 
