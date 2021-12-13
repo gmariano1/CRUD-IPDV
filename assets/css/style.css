@@ -13,3 +13,9 @@
     background-color: rgb(99, 97, 128) !important;
     margin-bottom: 10px;
 }
+.bi.bi-pencil-square{
+    cursor: pointer;
+}
+.bi.bi-trash-fill{
+    cursor: pointer;
+}

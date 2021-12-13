@@ -26,9 +26,22 @@ class CargoDAO
             $return = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             return $return;
         }else{
-            return "Não existem registros";
+            return false;
         }
 
+    }
+
+    public function edit($id)
+    {
+        $sql = "SELECT * FROM cargo WHERE id = $id";
+        $stmt = Conexao::getConnection()->prepare($sql);
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            $return = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $return;
+        }else{
+            return false;
+        }
     }
 
     public function update(Cargo $c)
