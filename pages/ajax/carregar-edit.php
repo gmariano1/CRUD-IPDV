@@ -33,3 +33,11 @@ if($_POST['type'] == 'departamento')
     $departamentoDao = new DepartamentoDAO();
     echo json_encode($departamentoDao->edit($departamento->getId()));
 }
+
+if($_POST['type'] == 'centro_de_custo')
+{
+    $centro_de_custo = new CentroDeCusto();
+    $centro_de_custo->setId($_POST['id_aux']);
+    $centro_de_custoDao = new CentroDeCustoDAO();
+    echo json_encode($centro_de_custoDao->edit($centro_de_custo->getId()));
+}

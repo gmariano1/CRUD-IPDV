@@ -48,16 +48,31 @@ if($_POST['type'] == 'usuario')
 
 if($_POST['type'] == 'departamento')
 {
-    $c = new Departamento();
-    $c->setId($_POST['id']);
-    $c->setNome($_POST['nome']);
-    $c->setCentroDeCustoId($_POST['centro_de_custo_id']);
-    $cdao = new DepartamentoDAO();
-    if($cdao->update($c)){
+    $d = new Departamento();
+    $d->setId($_POST['id']);
+    $d->setNome($_POST['nome']);
+    $d->setCentroDeCustoId($_POST['centro_de_custo_id']);
+    $ddao = new DepartamentoDAO();
+    if($ddao->update($d)){
         echo json_encode(['error' => false, 'msg' => 'Departamento editado!']);
         return;
     }else{
         echo json_encode(['error' => true, 'msg_error' => 'Departamento não deletado, erro de conexão!']);
+        return;
+    }
+}
+
+if($_POST['type'] == 'centro_de_custo')
+{
+    $c = new CentroDeCusto();
+    $c->setId($_POST['id']);
+    $c->setNome($_POST['nome']);
+    $cdao = new CentroDeCustoDAO();
+    if($cdao->update($c)){
+        echo json_encode(['error' => false, 'msg' => 'Centro de custo editado!']);
+        return;
+    }else{
+        echo json_encode(['error' => true, 'msg_error' => 'Centro de custo não deletado, erro de conexão!']);
         return;
     }
 }

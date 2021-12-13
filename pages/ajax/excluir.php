@@ -49,7 +49,22 @@ if($_POST['type'] == 'departamento')
         echo json_encode(['error' => false, 'msg' => 'Usuario deletado!']);
         return;
     }else{
-        echo json_encode(['exc'=> $udao, 'error' => true, 'msg_error' => 'Usuario não deletado, erro de conexão!']);
+        echo json_encode(['error' => true, 'msg_error' => 'Usuario não deletado, erro de conexão!']);
+        return;
+    }
+    
+}
+
+if($_POST['type'] == 'centro_de_custo')
+{
+    $c = new CentroDeCusto();
+    $c->setId($_POST['id']);
+    $cdao = new CentroDeCustoDAO();
+    if($cdao->delete($c->getId())){
+        echo json_encode(['error' => false, 'msg' => 'Centro de custo deletado!']);
+        return;
+    }else{
+        echo json_encode(['error' => true, 'msg_error' => 'Centro de custo não deletado, erro de conexão!']);
         return;
     }
     

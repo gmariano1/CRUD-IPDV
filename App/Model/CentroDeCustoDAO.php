@@ -30,6 +30,19 @@ class CentroDeCustoDAO
 
     }
 
+    public function edit($id)
+    {
+        $sql = "SELECT * FROM centro_de_custo WHERE id = $id";
+        $stmt = Conexao::getConnection()->prepare($sql);
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            $return = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $return;
+        }else{
+            return false;
+        }
+    }
+
     public function update(CentroDeCusto $c)
     {
 
