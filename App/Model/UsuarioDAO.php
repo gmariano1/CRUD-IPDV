@@ -20,7 +20,12 @@ class UsuarioDAO
 
     public function read()
     {
-        $sql = "SELECT * FROM usuario";
+        $sql = "SELECT 
+            u.id, u.nome, u.email, u.data_de_nascimento, u.cpf, c.nome as nome_cargo, d.nome as nome_departamento
+                    FROM usuario u 
+                    INNER JOIN cargo c ON u.cargo_id = c.id
+                    INNER JOIN departamento d ON u.departamento_id = d.id
+                    ORDER BY u.id ASC";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->execute();
         if($stmt->rowCount() > 0){
@@ -57,7 +62,7 @@ class UsuarioDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
         }
 
@@ -69,7 +74,7 @@ class UsuarioDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
             
         }
@@ -82,7 +87,7 @@ class UsuarioDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
             
         }
@@ -95,7 +100,7 @@ class UsuarioDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
             
         }
@@ -108,7 +113,7 @@ class UsuarioDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
             
         }
@@ -121,12 +126,25 @@ class UsuarioDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
             
         }
         return true;
         
+    }
+
+    public function edit($id)
+    {
+        $sql = "SELECT * FROM usuario WHERE id = $id";
+        $stmt = Conexao::getConnection()->prepare($sql);
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            $return = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $return;
+        }else{
+            return false;
+        }
     }
 
     public function delete($id)
@@ -136,9 +154,9 @@ class UsuarioDAO
         $stmt->bindValue(1, $id);
         $return = $stmt->execute();
         if($return){
-            return "Deletado com sucesso";
+            return true;
         }else{
-            return "Erro ao deletar";
+            return false;
         }
     }
 }

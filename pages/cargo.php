@@ -160,7 +160,6 @@
                     $(".btn.btn-danger").prop('disabled', true).text("Excluindo...");
                 },
                 success: function(result){
-                    console.log(result);
                     setTimeout(function() {
                         $('#excluir').hide();
                         if(result.error){
@@ -177,16 +176,18 @@
             });
             
         }
-        
+
+        $('.btn.btn-danger').on('click', function(){
+            const type = 'cargo';
+            const id_aux = $('#btn-excluir').val();
+            excluir(id_aux, type);
+        });
+
         $('.bi.bi-trash-fill').on('click', function(){
             const id_aux = $(this).attr('id_aux');
-            const type = 'cargo';
             $('#btn-excluir').val(id_aux);
             document.getElementById('p-text').innerHTML = "Deseja excluir o id " + id_aux + "?";
             $('#excluir').show();
-            $('.btn.btn-danger').on('click', function(){
-                excluir(id_aux, type);
-            });
         });
 
         $('.bi.bi-pencil-square').on('click', function(){

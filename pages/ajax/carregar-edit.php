@@ -17,3 +17,19 @@ if($_POST['type'] == 'cargo')
     $cargoDao = new CargoDAO();
     echo json_encode($cargoDao->edit($cargo->getId()));
 }
+
+if($_POST['type'] == 'usuario')
+{
+    $usuario = new Usuario();
+    $usuario->setId($_POST['id_aux']);
+    $usuarioDao = new UsuarioDAO();
+    echo json_encode($usuarioDao->edit($usuario->getId()));
+}
+
+if($_POST['type'] == 'departamento')
+{
+    $departamento = new Departamento();
+    $departamento->setId($_POST['id_aux']);
+    $departamentoDao = new DepartamentoDAO();
+    echo json_encode($departamentoDao->edit($departamento->getId()));
+}

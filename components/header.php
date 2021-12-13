@@ -2,7 +2,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['logado'])){
-        header('Location: '. SITE_URL . 'login.php');
+      header('Location: '. SITE_URL . 'login.php');
     }
 ?>
 <?php error_reporting(E_ERROR | E_WARNING | E_PARSE); ?>
@@ -38,10 +38,10 @@
             Ações
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/cargo.php' ?>">Cargo</a></li>
+            <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/usuario.php' ?>">Usuário</a></li>
+            <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/departamento.php' ?>">Departamento</a></li>
+            <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/centro-de-custo.php' ?>">Centro de Custo</a></li>
           </ul>
         </li>
       </ul>

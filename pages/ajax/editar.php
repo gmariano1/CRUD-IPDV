@@ -19,7 +19,45 @@ if($_POST['type'] == 'cargo')
     $cdao = new CargoDAO();
     if($cdao->update($c)){
         echo json_encode(['error' => false, 'msg' => 'Cargo editado!']);
+        return;
     }else{
         echo json_encode(['error' => true, 'msg_error' => 'Cargo não deletado, erro de conexão!']);
+        return;
+    }
+}
+
+if($_POST['type'] == 'usuario')
+{
+    $u = new Usuario();
+    $u->setId($_POST['id']);
+    $u->setNome($_POST['nome']);
+    $u->setEmail($_POST['email']);
+    $u->setDataDeNascimento($_POST['data_de_nascimento']);
+    $u->setCPF($_POST['cpf']);
+    $u->setCargoId($_POST['cargo_id']);
+    $u->setDepartamentoId($_POST['departamento_id']);
+    $udao = new UsuarioDAO();
+    if($udao->update($u)){
+        echo json_encode(['error' => false, 'msg' => 'Usuário editado!']);
+        return;
+    }else{
+        echo json_encode(['error' => true, 'msg_error' => 'Usuário não deletado, erro de conexão!']);
+        return;
+    }
+}
+
+if($_POST['type'] == 'departamento')
+{
+    $c = new Departamento();
+    $c->setId($_POST['id']);
+    $c->setNome($_POST['nome']);
+    $c->setCentroDeCustoId($_POST['centro_de_custo_id']);
+    $cdao = new DepartamentoDAO();
+    if($cdao->update($c)){
+        echo json_encode(['error' => false, 'msg' => 'Departamento editado!']);
+        return;
+    }else{
+        echo json_encode(['error' => true, 'msg_error' => 'Departamento não deletado, erro de conexão!']);
+        return;
     }
 }

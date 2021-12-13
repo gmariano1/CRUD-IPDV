@@ -19,16 +19,32 @@ class DepartamentoDAO
 
     public function read()
     {
-        $sql = "SELECT * FROM departamento";
+        $sql = "SELECT d.id, d.nome, c.nome as centro_de_custo_nome
+            FROM departamento d
+            INNER JOIN centro_de_custo c ON d.centro_de_custo_id = c.id
+            ORDER BY d.id ASC";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->execute();
         if($stmt->rowCount() > 0){
             $return = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             return $return;
         }else{
-            return "Não existem registros";
+            return false;
         }
 
+    }
+
+    public function edit($id)
+    {
+        $sql = "SELECT * FROM departamento WHERE id = $id";
+        $stmt = Conexao::getConnection()->prepare($sql);
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            $return = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $return;
+        }else{
+            return false;
+        }
     }
 
     public function update(Departamento $c)
@@ -42,7 +58,7 @@ class DepartamentoDAO
             $stmt->bindValue(2, $c->getId());
             $return = $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
         }
 
@@ -54,11 +70,11 @@ class DepartamentoDAO
             $stmt->bindValue(2, $c->getId());
             $stmt->execute();
             if(!$return){
-                return "Erro ao atualizar";
+                return false;
             }
             
         }
-        return "Atualizado com sucesso";
+        return true;
         
     }
 
@@ -69,9 +85,9 @@ class DepartamentoDAO
         $stmt->bindValue(1, $id);
         $return = $stmt->execute();
         if($return){
-            return "Deletado com sucesso";
+            return $return;
         }else{
-            return "Erro ao deletar";
+            return $return;
         }
     }
 }

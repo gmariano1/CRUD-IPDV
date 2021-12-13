@@ -17,8 +17,40 @@ if($_POST['type'] == 'cargo')
     $cdao = new CargoDAO();
     if($cdao->delete($c->getId())){
         echo json_encode(['error' => false, 'msg' => 'Cargo deletado!']);
+        return;
     }else{
         echo json_encode(['error' => true, 'msg_error' => 'Cargo não deletado, erro de conexão!']);
+        return;
+    }
+    
+}
+
+if($_POST['type'] == 'usuario')
+{
+    $u = new Usuario();
+    $u->setId($_POST['id']);
+    $udao = new UsuarioDAO();
+    if($udao->delete($u->getId())){
+        echo json_encode(['error' => false, 'msg' => 'Usuario deletado!']);
+        return;
+    }else{
+        echo json_encode(['error' => true, 'msg_error' => 'Usuario não deletado, erro de conexão!']);
+        return;
+    }
+    
+}
+
+if($_POST['type'] == 'departamento')
+{
+    $u = new Departamento();
+    $u->setId($_POST['id']);
+    $udao = new DepartamentoDAO();
+    if($udao->delete($u->getId())){
+        echo json_encode(['error' => false, 'msg' => 'Usuario deletado!']);
+        return;
+    }else{
+        echo json_encode(['exc'=> $udao, 'error' => true, 'msg_error' => 'Usuario não deletado, erro de conexão!']);
+        return;
     }
     
 }
