@@ -5,14 +5,15 @@ class UsuarioDAO
 {
     public function create(Usuario $c)
     {
-        $sql = "INSERT INTO usuario (nome, email, data_de_nascimento, cpf, cargo_id, departamento_id) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO usuario (nome, email, data_de_nascimento, senha, cpf, cargo_id, departamento_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = Conexao::getConnection()->prepare($sql);
         $stmt->bindValue(1, $c->getNome());
         $stmt->bindValue(2, $c->getEmail());
         $stmt->bindValue(3, $c->getDataDeNascimento());
-        $stmt->bindValue(4, $c->getCPF());
-        $stmt->bindValue(5, $c->getCargoId());
-        $stmt->bindValue(6, $c->getDepartamentoId());
+        $stmt->bindValue(4, $c->getSenha());
+        $stmt->bindValue(5, $c->getCPF());
+        $stmt->bindValue(6, $c->getCargoId());
+        $stmt->bindValue(7, $c->getDepartamentoId());
         $return = $stmt->execute();
         return $return;
     }
@@ -29,6 +30,20 @@ class UsuarioDAO
             return "Não existem registros";
         }
 
+    }
+
+    public function login($email)
+    {
+        $sql = "SELECT email, senha FROM usuario WHERE email = ?";
+        $stmt = Conexao::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $email);
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            $return = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $return;
+        }else{
+            return null;
+        }
     }
 
     public function update(Usuario $c)

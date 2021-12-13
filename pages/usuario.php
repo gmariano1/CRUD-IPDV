@@ -24,6 +24,10 @@
             <input type="text" id="cpf" class="form-control" required maxlength="14">
         </div>
         <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" id="senha" class="form-control" required>
+        </div>
+        <div class="mb-3">
             <label for="cargo" class="form-label">Cargo</label>
             <select class="form-select cargo" aria-label="Default select example" required>
                 <option selected disabled>Selecione o cargo</option>
@@ -57,6 +61,7 @@
             const departamento_id = $(".form-select.departamento").val();
             const cpf = $("#cpf").val().replace(".", "").replace(".", "").replace("-", "");
             const email = $('#email').val();
+            const senha = $('#senha').val();
             const data_de_nascimento = $('#data_de_nascimento').val();
             const obj = {
                 type, nome, cpf, email, data_de_nascimento, cargo_id, departamento_id

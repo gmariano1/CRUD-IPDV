@@ -3,7 +3,7 @@ namespace App\Model;
 
 class Usuario
 {
-    private $id, $nome, $email, $data_de_nascimento, $cpf, $cargo_id, $departamento_id;
+    private $id, $nome, $email, $data_de_nascimento, $cpf, $cargo_id, $departamento_id, $senha;
 
     public function getId()
     {
@@ -13,6 +13,16 @@ class Usuario
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    public function getSenha()
+    {
+        return $this->senha;
+    }
+
+    public function setSenha($senha)
+    {
+        $this->senha = $senha;
     }
 
     public function getNome()

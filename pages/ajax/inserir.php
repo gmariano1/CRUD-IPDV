@@ -60,10 +60,12 @@ if($_POST['type'] == 'departamento')
 if($_POST['type'] == 'usuario')
 {
     $u = new Usuario();
+    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
     $u->setNome($_POST['nome']);
     $u->setEmail($_POST['email']);
     $u->setDataDeNascimento($_POST['data_de_nascimento']);
     $u->setCPF($_POST['cpf']);
+    $u->setSenha($senha);
     $u->setCargoId($_POST['cargo_id']);
     $u->setDepartamentoId($_POST['departamento_id']);
     $uao = new UsuarioDAO();
