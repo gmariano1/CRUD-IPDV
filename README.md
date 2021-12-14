@@ -17,4 +17,4 @@ Coloquei no meu dominio a aplicação https://crud.guilhermemariano.dev.br/ logi
 Segue meu modelo entidade relacionamento requerido. 
 
 
-
+![](https://github.com/gmariano1/CRUD-IPDV/blob/main/images/idpv.png)
