@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-
+    <script type="text/javascript" charset="utf8" src="../assets/js/timer.js"></script>
     <title>CRUD-IDPV</title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
@@ -48,7 +48,7 @@
           <a class="nav-link" href="<?= SITE_URL . '/logout.php' ?>">Logout</a>
         </li>
         <li class="nav-item">
-          <div id="contador"><h6>Sessão expira em 60:00 minutos</h6></div>
+          <div id="contador"><h6>Sessão expira em <span id="time">60:00</span> minutos</h6></div>
         </li>
       </ul>
     </div>
