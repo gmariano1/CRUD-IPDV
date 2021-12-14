@@ -179,7 +179,7 @@
             const senha = $('#senha').val();
             const data_de_nascimento = $('#data_de_nascimento').val();
             const obj = {
-                type, nome, cpf, email, data_de_nascimento, cargo_id, departamento_id
+                type, nome, cpf, email, data_de_nascimento, cargo_id, departamento_id, senha
             };
             $.ajax({
                 url: '<?= SITE_URL ?>pages/ajax/inserir.php',

@@ -8,15 +8,21 @@
     $usuario = new UsuarioDAO();
     unset($error_vazio);
     unset($error_login);
+    unset($error_senha);
     if(!empty($_POST['log']) && $_POST['log'] == 1):
         if(!empty($_POST['email']) && !empty($_POST['senha'])){
             $login = $usuario->login($_POST['email']);
-            if(empty($login)):
+            $verify = password_verify($_POST['senha'], $login[0]['senha']);
+            if(empty($login)){
                 $error_login = true;
-            else:
+            }
+            else if(!$verify){
+                $error_senha = true;
+            }
+            else if($verify){
                 $_SESSION['logado'] = true;
                 header("Location: index.php");
-            endif;
+            }
         }else{
             $error_vazio = true;
         }
@@ -44,6 +50,11 @@
     <?php if(isset($error_login)): ?>
         <div class="alert alert-danger" role="alert">
             Usuario não encontrado!
+        </div>
+    <?php endif; ?>
+    <?php if(isset($error_senha)): ?>
+        <div class="alert alert-danger" role="alert">
+            Senha incorreta!
         </div>
     <?php endif; ?>
     <div class="container">
