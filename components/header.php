@@ -44,6 +44,12 @@
             <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/centro-de-custo.php' ?>">Centro de Custo</a></li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= SITE_URL . '/logout.php' ?>">Logout</a>
+        </li>
+        <li class="nav-item">
+          <div id="contador"><h6>Sessão expira em 60:00 minutos</h6></div>
+        </li>
       </ul>
     </div>
   </div>

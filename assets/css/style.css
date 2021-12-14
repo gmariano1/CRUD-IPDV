@@ -19,3 +19,7 @@
 .bi.bi-trash-fill{
     cursor: pointer;
 }
+#contador{
+    margin-left: 20px;
+    padding-top: 10px;
+}
