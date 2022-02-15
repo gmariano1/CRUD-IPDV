@@ -13,7 +13,4 @@ O dump foi colocado na pasta dump/ na raiz do arquivo aí só importar para seu 
 
 # Modelo Entidade Relacionamento
 
-Segue meu modelo entidade relacionamento requerido. 
-
-
 ![](https://github.com/gmariano1/CRUD-IPDV/blob/main/images/idpv.png)
