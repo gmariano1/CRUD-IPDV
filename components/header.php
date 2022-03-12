@@ -38,10 +38,10 @@
             Ações
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/cargo.php' ?>">Cargo</a></li>
-            <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/usuario.php' ?>">Usuário</a></li>
-            <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/departamento.php' ?>">Departamento</a></li>
-            <li><a class="dropdown-item" href="<?= SITE_URL . 'pages/centro-de-custo.php' ?>">Centro de Custo</a></li>
+            <li><a class="dropdown-item" href="<?= SITE_URL . 'views/cargo.php' ?>">Cargo</a></li>
+            <li><a class="dropdown-item" href="<?= SITE_URL . 'views/usuario.php' ?>">Usuário</a></li>
+            <li><a class="dropdown-item" href="<?= SITE_URL . 'views/departamento.php' ?>">Departamento</a></li>
+            <li><a class="dropdown-item" href="<?= SITE_URL . 'views/centro-de-custo.php' ?>">Centro de Custo</a></li>
           </ul>
         </li>
         <li class="nav-item">
