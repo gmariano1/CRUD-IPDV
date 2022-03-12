@@ -16,12 +16,12 @@
             </thead>
             <tbody>
                 <?php
-                    use App\Model\UsuarioDAO;
-                    use App\Model\DepartamentoDAO;
-                    use App\Model\CargoDao;
-                    $cargo = new CargoDao();
-                    $departamento = new DepartamentoDAO();
-                    $usuarioDao = new UsuarioDAO();
+                    use App\Controller\UsuarioController;
+                    use App\Controller\DepartamentoController;
+                    use App\Controller\CargoController;
+                    $cargo = new CargoController();
+                    $departamento = new DepartamentoController();
+                    $usuarioDao = new UsuarioController();
                     
                 ?>
                 <?php foreach ($usuarioDao->read() as $usuario): ?>

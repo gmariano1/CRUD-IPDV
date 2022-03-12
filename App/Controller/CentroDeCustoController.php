@@ -1,7 +1,10 @@
 <?php
-namespace App\Model;
+namespace App\Controller;
 
-class CentroDeCustoDAO
+use App\Model\CentroDeCusto;
+use App\Model\Conexao;
+
+class CentroDeCustoController
 {
     public function create(CentroDeCusto $c)
     {

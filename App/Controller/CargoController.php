@@ -1,7 +1,10 @@
 <?php
-namespace App\Model;
+namespace App\Controller;
 
-class CargoDAO
+use App\Model\Cargo;
+use App\Model\Conexao;
+
+class CargoController
 {
     public function create(Cargo $c)
     {

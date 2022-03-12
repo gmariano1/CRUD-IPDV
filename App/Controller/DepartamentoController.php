@@ -1,7 +1,10 @@
 <?php
-namespace App\Model;
+namespace App\Controller;
 
-class DepartamentoDAO
+use App\Model\Departamento;
+use App\Model\Conexao;
+
+class DepartamentoController
 {
     public function create(Departamento $c)
     {
