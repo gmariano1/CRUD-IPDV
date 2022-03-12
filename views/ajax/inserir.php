@@ -2,20 +2,20 @@
 require_once dirname(__DIR__, 2).'/includes.php';
 
 use App\Model\CentroDeCusto;
-use App\Model\CentroDeCustoDAO;
+use App\Controller\CentroDeCustoController;
 use App\Model\Cargo;
-use App\Model\CargoDAO;
+use App\Controller\CargoController;
 use App\Model\Departamento;
-use App\Model\DepartamentoDAO;
+use App\Controller\DepartamentoController;
 use App\Model\Usuario;
-use App\Model\UsuarioDAO;
+use App\Controller\UsuarioController;
 
 if($_POST['type'] == 'centro_de_custo')
 {
     $c = new CentroDeCusto();
     $c->setNome($_POST['nome']);
-    $cdao = new CentroDeCustoDAO();
-    $result = $cdao->create($c);
+    $cController = new CentroDeCustoController();
+    $result = $cController->create($c);
     if($result){
         echo json_encode(['error' => false, 'msg' => "Centro de Custo criado!!"]);
         return;
@@ -30,8 +30,8 @@ if($_POST['type'] == 'cargo')
     $c = new Cargo();
     $c->setNome($_POST['nome']);
     $c->setDescricao($_POST['desc']);
-    $cdao = new CargoDAO();
-    $result = $cdao->create($c);
+    $cController = new CargoController();
+    $result = $cController->create($c);
     if($result){
         echo json_encode(['error' => false, 'msg' => "Cargo criado!!"]);
         return;
@@ -46,8 +46,8 @@ if($_POST['type'] == 'departamento')
     $d = new Departamento();
     $d->setNome($_POST['nome']);
     $d->setCentroDeCustoId($_POST['centro_de_custo_id']);
-    $dao = new DepartamentoDAO();
-    $result = $dao->create($d);
+    $Controller = new DepartamentoController();
+    $result = $Controller->create($d);
     if($result){
         echo json_encode(['error' => false, 'msg' => "Departamento criado!!"]);
         return;
@@ -68,7 +68,7 @@ if($_POST['type'] == 'usuario')
     $u->setSenha($senha);
     $u->setCargoId($_POST['cargo_id']);
     $u->setDepartamentoId($_POST['departamento_id']);
-    $uao = new UsuarioDAO();
+    $uao = new UsuarioController();
     $result = $uao->create($u);
     if($result){
         echo json_encode(['error' => false, 'msg' => "Usuario criado!!"]);

@@ -1,7 +1,10 @@
 <?php
-namespace App\Model;
+namespace App\Controller;
 
-class UsuarioDAO
+use App\Model\Usuario;
+use App\Model\Conexao;
+
+class UsuarioController
 {
     public function create(Usuario $c)
     {

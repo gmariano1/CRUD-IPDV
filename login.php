@@ -4,8 +4,8 @@
     if(isset($_SESSION['logado'])){
         header("location:index.php");
     }
-    use App\Model\UsuarioDAO;
-    $usuario = new UsuarioDAO();
+    use App\Controller\UsuarioController;
+    $usuario = new UsuarioController();
     unset($error_vazio);
     unset($error_login);
     unset($error_senha);

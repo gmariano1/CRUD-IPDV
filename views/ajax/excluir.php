@@ -2,20 +2,20 @@
 require_once dirname(__DIR__, 2).'/includes.php';
 
 use App\Model\CentroDeCusto;
-use App\Model\CentroDeCustoDAO;
+use App\Controller\CentroDeCustoController;
 use App\Model\Cargo;
-use App\Model\CargoDAO;
+use App\Controller\CargoController;
 use App\Model\Departamento;
-use App\Model\DepartamentoDAO;
+use App\Controller\DepartamentoController;
 use App\Model\Usuario;
-use App\Model\UsuarioDAO;
+use App\Controller\UsuarioController;
 
 if($_POST['type'] == 'cargo')
 {
     $c = new Cargo();
     $c->setId($_POST['id']);
-    $cdao = new CargoDAO();
-    if($cdao->delete($c->getId())){
+    $cController = new CargoController();
+    if($cController->delete($c->getId())){
         echo json_encode(['error' => false, 'msg' => 'Cargo deletado!']);
         return;
     }else{
@@ -29,8 +29,8 @@ if($_POST['type'] == 'usuario')
 {
     $u = new Usuario();
     $u->setId($_POST['id']);
-    $udao = new UsuarioDAO();
-    if($udao->delete($u->getId())){
+    $uController = new UsuarioController();
+    if($uController->delete($u->getId())){
         echo json_encode(['error' => false, 'msg' => 'Usuario deletado!']);
         return;
     }else{
@@ -44,8 +44,8 @@ if($_POST['type'] == 'departamento')
 {
     $u = new Departamento();
     $u->setId($_POST['id']);
-    $udao = new DepartamentoDAO();
-    if($udao->delete($u->getId())){
+    $uController = new DepartamentoController();
+    if($uController->delete($u->getId())){
         echo json_encode(['error' => false, 'msg' => 'Usuario deletado!']);
         return;
     }else{
@@ -59,8 +59,8 @@ if($_POST['type'] == 'centro_de_custo')
 {
     $c = new CentroDeCusto();
     $c->setId($_POST['id']);
-    $cdao = new CentroDeCustoDAO();
-    if($cdao->delete($c->getId())){
+    $cController = new CentroDeCustoController();
+    if($cController->delete($c->getId())){
         echo json_encode(['error' => false, 'msg' => 'Centro de custo deletado!']);
         return;
     }else{

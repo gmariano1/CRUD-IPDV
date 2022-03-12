@@ -2,13 +2,13 @@
 require_once dirname(__DIR__, 2).'/includes.php';
 
 use App\Model\CentroDeCusto;
-use App\Model\CentroDeCustoDAO;
+use App\Controller\CentroDeCustoController;
 use App\Model\Cargo;
-use App\Model\CargoDAO;
+use App\Controller\CargoController;
 use App\Model\Departamento;
-use App\Model\DepartamentoDAO;
+use App\Controller\DepartamentoController;
 use App\Model\Usuario;
-use App\Model\UsuarioDAO;
+use App\Controller\UsuarioController;
 
 if($_POST['type'] == 'cargo')
 {
@@ -16,8 +16,8 @@ if($_POST['type'] == 'cargo')
     $c->setId($_POST['id']);
     $c->setNome($_POST['nome']);
     $c->setDescricao($_POST['desc']);
-    $cdao = new CargoDAO();
-    if($cdao->update($c)){
+    $cController = new CargoController();
+    if($cController->update($c)){
         echo json_encode(['error' => false, 'msg' => 'Cargo editado!']);
         return;
     }else{
@@ -36,8 +36,8 @@ if($_POST['type'] == 'usuario')
     $u->setCPF($_POST['cpf']);
     $u->setCargoId($_POST['cargo_id']);
     $u->setDepartamentoId($_POST['departamento_id']);
-    $udao = new UsuarioDAO();
-    if($udao->update($u)){
+    $uController = new UsuarioController();
+    if($uController->update($u)){
         echo json_encode(['error' => false, 'msg' => 'Usuário editado!']);
         return;
     }else{
@@ -52,8 +52,8 @@ if($_POST['type'] == 'departamento')
     $d->setId($_POST['id']);
     $d->setNome($_POST['nome']);
     $d->setCentroDeCustoId($_POST['centro_de_custo_id']);
-    $ddao = new DepartamentoDAO();
-    if($ddao->update($d)){
+    $dController = new DepartamentoController();
+    if($dController->update($d)){
         echo json_encode(['error' => false, 'msg' => 'Departamento editado!']);
         return;
     }else{
@@ -67,8 +67,8 @@ if($_POST['type'] == 'centro_de_custo')
     $c = new CentroDeCusto();
     $c->setId($_POST['id']);
     $c->setNome($_POST['nome']);
-    $cdao = new CentroDeCustoDAO();
-    if($cdao->update($c)){
+    $cController = new CentroDeCustoController();
+    if($cController->update($c)){
         echo json_encode(['error' => false, 'msg' => 'Centro de custo editado!']);
         return;
     }else{

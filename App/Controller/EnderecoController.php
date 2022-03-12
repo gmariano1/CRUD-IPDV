@@ -1,7 +1,10 @@
 <?php
-namespace App\Model;
+namespace App\Controller;
 
-class EnderecoDAO
+use App\Model\Endereco;
+use App\Model\Conexao;
+
+class EnderecoController
 {
     public function create(Endereco $c)
     {

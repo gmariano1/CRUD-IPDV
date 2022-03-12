@@ -1,62 +1,52 @@
 <?php require_once dirname(__DIR__).'/components/header.php'; ?>
-<table class="table crud">
+    
+    
+    <table class="table crud">
         <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Excluir</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                use App\Model\CentroDeCustoDAO;
-                $centroDao = new CentroDeCustoDAO();
+                use App\Controller\CargoController;
+                $cargoDao = new CargoController();
             ?>
-            <?php foreach ($centroDao->read() as $centro): ?>
+            <?php foreach ($cargoDao->read() as $cargo): ?>
             <tr>
-                <td><?= $centro['id'] ?></td>
-                <td><?= $centro['nome'] ?></td>
-                <td><i class="bi bi-pencil-square" id_aux="<?= $centro['id'] ?>"></i></td>
-                <td><i class="bi bi-trash-fill" id_aux="<?= $centro['id'] ?>"></i></td>
+                <td><?= $cargo['id'] ?></td>
+                <td><?= $cargo['nome'] ?></td>
+                <td><?= $cargo['descricao'] ?></td>
+                <td><i class="bi bi-pencil-square" id_aux="<?= $cargo['id'] ?>"></i></td>
+                <td><i class="bi bi-trash-fill" id_aux="<?= $cargo['id'] ?>"></i></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#cadastrar">Cadastrar Centro de Custo</button>
+    
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#cadastrar">Cadastrar Cargo</button>
     <!-- Modal -->
-    <div class="modal" tabindex="-1" id="cadastrar">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Criar Cargo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="container">
-                    <h1 class="display-5">Centro de Custo</h1>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nome</label>
-                        <input type="text" id="nome" class="form-control" name="nome">
-                    </div>
-                <button type="button" class="btn btn-primary" onclick="inserir()">Cadastrar</button>
-            </div>
-        </div>
-        </div>
-    </div>
-
     <div class="modal" tabindex="-1" id="editar">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Centro de Custo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Cargo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
                 <div class="container">
-                    <h1 class="display-5">Centro de custo</h1>
+                    <h1 class="display-5">Cargo</h1>
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
                         <input type="hidden" id="id-edit" value="">
                         <input type="text" id="nome-edit" class="form-control" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <input type="text" id="descricao-edit" class="form-control" value="" required>
                     </div>
                     <button type="button" class="btn btn-primary" onclick="editar()">Editar</button>
                     <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Close</button>
@@ -64,7 +54,28 @@
             </div>
         </div>
     </div>
-
+    <div class="modal" tabindex="-1" id="cadastrar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Criar Cargo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <div class="container">
+                    <h1 class="display-5">Cargo</h1>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" id="nome" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <input type="text" id="descricao" class="form-control" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="inserir()">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal" tabindex="-1" id="excluir">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -84,11 +95,13 @@
         </div>
     </div>
     <script>
-        function inserir(){
-            const type = "centro_de_custo";
+        function inserir()
+        {
+            const type = "cargo";
             const nome = $("#nome").val();
+            const desc = $("#descricao").val();
             const obj = {
-                type, nome
+                type, nome, desc
             };
             $.ajax({
                 url: '<?= SITE_URL ?>pages/ajax/inserir.php',
@@ -104,13 +117,15 @@
                 dataType: 'json'
             });
         }
+
         function editar()
         {
-            const type = "centro_de_custo";
+            const type = "cargo";
             const id = $("#id-edit").val();
             const nome = $("#nome-edit").val();
+            const desc = $("#descricao-edit").val();
             const obj = {
-                type, nome, id
+                type, nome, desc, id
             };
             $.ajax({
                 url: '<?= SITE_URL ?>pages/ajax/editar.php',
@@ -163,7 +178,7 @@
         }
 
         $('.btn.btn-danger').on('click', function(){
-            const type = 'centro_de_custo';
+            const type = 'cargo';
             const id_aux = $('#btn-excluir').val();
             excluir(id_aux, type);
         });
@@ -177,7 +192,7 @@
 
         $('.bi.bi-pencil-square').on('click', function(){
             const id_aux = $(this).attr('id_aux');
-            const type = 'centro_de_custo';
+            const type = 'cargo';
             const obj = {
                 id_aux, type
             };
@@ -188,6 +203,7 @@
                 success: function(result){
                     $('#id-edit').val(result[0].id);
                     $('#nome-edit').val(result[0].nome);
+                    $('#descricao-edit').val(result[0].descricao);
                 },
                 dataType: 'json'
             });
